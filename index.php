@@ -76,7 +76,7 @@
               <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                 <span aria-hidden='true'>&times;</span>
               </button>
-              Halo <b class="text-primary"><?php echo $_SESSION['nama'];?></b>,  Selamat Datang di Website Pengaduan.
+              Halo <b class="text-primary"><?php echo $_SESSION['nama'];?></b>,  Selamat Datang di Website Pengaduan AYANI WOMEN AND CHILDREN CLINIC.
             </div>           
           <div class="row mb-3">
             <!-- Earnings (Monthly) Card Example -->

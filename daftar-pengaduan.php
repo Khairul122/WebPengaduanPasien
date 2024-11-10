@@ -1,12 +1,12 @@
-<?php 
-	session_start();
+<?php
+session_start();
 
-    // cek apakah yang mengakses halaman ini sudah login
-	if(empty($_SESSION['email'])){
-		header("location:login.php?pesan=no");
-	}
-  $page = "List";
-	?>
+// cek apakah yang mengakses halaman ini sudah login
+if (empty($_SESSION['email'])) {
+  header("location:login.php?pesan=no");
+}
+$page = "List";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +23,7 @@
   <link href="css/ruang-admin.min.css" rel="stylesheet">
 
   <!-- Data Table -->
-  <link href="vendor/datatables/dataTables.bootstrap4.css"  rel="stylesheet" type="text/css">
+  <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet" type="text/css">
   <!-- END Data Table -->
 </head>
 
@@ -76,104 +76,97 @@
           </div>
 
           <div class="row">
-         ` <div class="col-lg-12">
-            <div class="card mb-4">
-              <div class="card-body">
-                <div class="row col-lg-12">
-                  <a href="create-pengaduan.php" class="btn btn-sm btn-outline-dark btn-icon-split">
-                    <span class="icon text-dark-50">
-                      <i class="fas fa-plus"></i>
-                    </span>
-                    <span class="text">Tambah Pengaduan</span>
-                  </a>
-                  &nbsp; &nbsp;
-                  <a href="cetak-daftar-pengaduan.php" class="btn btn-sm btn-outline-info btn-icon-split">
-                    <span class="icon text-primary-50">
-                      <i class="fas fa-print"></i>
-                    </span>
-                    <span class="text">Cetak Daftar Pengaduan</span>
-                  </a>
-                </div>  
-                <div class="table-responsive p-3">
-                <?php
-                  if(isset($_GET['pesan'])){
-                    if($_GET['pesan'] == "gagal"){
-                     echo "<div class='alert alert-danger' role='alert'>
+            ` <div class="col-lg-12">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <div class="row col-lg-12">
+                    <a href="create-pengaduan.php" class="btn btn-sm btn-outline-dark btn-icon-split">
+                      <span class="icon text-dark-50">
+                        <i class="fas fa-plus"></i>
+                      </span>
+                      <span class="text">Tambah Pengaduan</span>
+                    </a>
+                    &nbsp; &nbsp;
+                    <!-- <a href="cetak-daftar-pengaduan.php" class="btn btn-sm btn-outline-info btn-icon-split">
+                      <span class="icon text-primary-50">
+                        <i class="fas fa-print"></i>
+                      </span>
+                      <span class="text">Cetak Daftar Pengaduan</span>
+                    </a> -->
+                  </div>
+                  <div class="table-responsive p-3">
+                    <?php
+                    if (isset($_GET['pesan'])) {
+                      if ($_GET['pesan'] == "gagal") {
+                        echo "<div class='alert alert-danger' role='alert'>
                             Data gagal diubah. Pastikan anda sudah mengisinya dengan benar.
                           </div>";
-                    }
-                    else if($_GET['pesan'] == "sukses"){
-                      echo "<div class='alert alert-success alert-dismissible' role='alert'>
+                      } else if ($_GET['pesan'] == "sukses") {
+                        echo "<div class='alert alert-success alert-dismissible' role='alert'>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                              <span aria-hidden='true'>&times;</span>
                             </button>
                               Selamat! Data berhasil diubah.
-                            </div>";                   
-                    }
-                    else if($_GET['pesan'] == "ekstensi"){
-                      echo "<div class='alert alert-danger' role='alert'>
+                            </div>";
+                      } else if ($_GET['pesan'] == "ekstensi") {
+                        echo "<div class='alert alert-danger' role='alert'>
                             Format gambar hanya .PNG, .JPEG, .JPG dan .BMP
-                           </div>";                   
-                    }
-                    else if($_GET['pesan'] == "lengkapi"){
-                      echo "<div class='alert alert-danger' role='alert'>
+                           </div>";
+                      } else if ($_GET['pesan'] == "lengkapi") {
+                        echo "<div class='alert alert-danger' role='alert'>
                            Pastikan anda sudah mengisi data dengan lengkap.
-                           </div>";                   
-                    }
-                    else if($_GET['pesan'] == "hapus"){
-                      echo "<div class='alert alert-danger' role='alert'>
+                           </div>";
+                      } else if ($_GET['pesan'] == "hapus") {
+                        echo "<div class='alert alert-danger' role='alert'>
                           Data berhasil dihapus.
-                           </div>";                   
+                           </div>";
+                      }
                     }
-                  }
-                ?>
-                  <table class="table align-items-center table-bordered table-flush table-hover" id="tabel-pengaduan">
-                    <thead class="thead-light">
-                      <tr align="center">
+                    ?>
+                    <table class="table align-items-center table-bordered table-flush table-hover" id="tabel-pengaduan">
+                      <thead class="thead-light">
+                        <tr align="center">
                           <th>No</th>
                           <th>Judul Pengaduan</th>
                           <th>Tanggal Pengaduan</th>
                           <th>Balasan</th>
                           <th>Opsi</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                  <?php
-                      include 'koneksi.php';
-                      $no = 1;
-                      $idm = $_SESSION['id_masyarakat'];
-                      $data = mysqli_query($koneksi,"select * from tbl_pengaduan where id_masyarakat='$idm'");
-                      while($row = mysqli_fetch_array($data))
-                      {
-                        if($row['balasan_pengaduan'] == "Belum"){
-                          $text = "text-danger";
-                        }
-                        else if($row['balasan_pengaduan'] == "Proses"){
-                          $text = "text-warning";
-                        }
-                        else{
-                          $text = "text-success";
-                        }
-                        
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+                        include 'koneksi.php';
+                        $no = 1;
+                        $idm = $_SESSION['id_masyarakat'];
+                        $data = mysqli_query($koneksi, "select * from tbl_pengaduan where id_masyarakat='$idm'");
+                        while ($row = mysqli_fetch_array($data)) {
+                          if ($row['balasan_pengaduan'] == "Belum") {
+                            $text = "text-danger";
+                          } else if ($row['balasan_pengaduan'] == "Proses") {
+                            $text = "text-warning";
+                          } else {
+                            $text = "text-success";
+                          }
+
                           echo "<tr align='center'>
                           <td>$no</td>
-                          <td><a href='detail-pengaduan.php?id=".$row['id_pengaduan']."'> ".$row['subjek_pengaduan']." </a></td>
-                          <td>".tgl_indo($row['tgl_pengaduan'])."</td>
-                          <td class=".$text.">".$row['balasan_pengaduan']."</td>
+                          <td><a href='detail-pengaduan.php?id=" . $row['id_pengaduan'] . "'> " . $row['subjek_pengaduan'] . " </a></td>
+                          <td>" . tgl_indo($row['tgl_pengaduan']) . "</td>
+                          <td class=" . $text . ">" . $row['balasan_pengaduan'] . "</td>
                           <td>
-                            <a class='btn btn-sm btn-info' href='cetak-pengaduan.php?id=".$row['id_pengaduan']."'> Cetak </a>
-                            <a class='btn btn-sm btn-primary' href='ubah-pengaduan.php?id=".$row['id_pengaduan']."'> Ubah </a>
-                            <a class='btn btn-sm btn-danger' href='hapus-pengaduan.php?id=".$row['id_pengaduan']."'> Hapus </a>
+                            <a class='btn btn-sm btn-info' href='cetak-pengaduan.php?id=" . $row['id_pengaduan'] . "'> Cetak </a>
+                            <a class='btn btn-sm btn-primary' href='ubah-pengaduan.php?id=" . $row['id_pengaduan'] . "'> Ubah </a>
+                            <a class='btn btn-sm btn-danger' href='hapus-pengaduan.php?id=" . $row['id_pengaduan'] . "'> Hapus </a>
                           </td>
                       </tr>";
-                      $no++;
-                      }
-                  ?>
-                  </tbody>
-                </table>
+                          $no++;
+                        }
+                        ?>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
-             </div>
             </div>
           </div>
           <!--Row-->
@@ -207,9 +200,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>copyright &copy; <script> document.write(new Date().getFullYear()); </script> - developed by
-            <b><a href="">Ari Sumardi</a></b>
-            </span>
+           
           </div>
         </div>
       </footer>
@@ -230,9 +221,9 @@
   <script src="vendor/datatables/jquery.dataTables.min.js"></script>
   <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
   <script>
-     $(document).ready(function(){
-     $('#tabel-pengaduan').DataTable();
-     })
+    $(document).ready(function() {
+      $('#tabel-pengaduan').DataTable();
+    })
   </script>
   <!-- END Data Table -->
 

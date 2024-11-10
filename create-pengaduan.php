@@ -1,16 +1,16 @@
-<?php 
-	session_start();
+<?php
+session_start();
 
-    // cek apakah yang mengakses halaman ini sudah login
-	if(empty($_SESSION['email'])){
-		header("location:login.php?pesan=no");
-	}
+// cek apakah yang mengakses halaman ini sudah login
+if (empty($_SESSION['email'])) {
+  header("location:login.php?pesan=no");
+}
 
-  include "koneksi.php";
-  $page = "Buat";
+include "koneksi.php";
+$page = "Buat";
 
-	?>
-  <!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -74,152 +74,144 @@
             <h1 class="h3 mb-0 text-gray-800">Buat Pengaduan</h1>
           </div>
           <div class="row">
-         ` <div class="col-lg-12">
+            ` <div class="col-lg-12">
               <!-- Form Basic -->
               <div class="card mb-4">
                 <div class="card-body">
-                <?php
-                  if(isset($_GET['pesan'])){
-                    if($_GET['pesan'] == "gagal"){
-                     echo "<div class='alert alert-danger' role='alert'>
+                  <?php
+                  if (isset($_GET['pesan'])) {
+                    if ($_GET['pesan'] == "gagal") {
+                      echo "<div class='alert alert-danger' role='alert'>
                             Data gagal disimpan. Pastikan anda sudah mengisinya dengan benar.
                           </div>";
-                    }
-                    else if($_GET['pesan'] == "sukses"){
+                    } else if ($_GET['pesan'] == "sukses") {
                       echo "<div class='alert alert-success' role='alert'>
                             Data berhasil dikirim. Petugas berwenang akan memerika pengaduan, kemudian akan mengirimkan ke pejabat yang berwenang <a class='text-dark' href='daftar-pengaduan.php'><b>Cek Daftar Pengaduan</b></a>
-                           </div>";                   
-                    }
-                    else if($_GET['pesan'] == "ekstensi"){
+                           </div>";
+                    } else if ($_GET['pesan'] == "ekstensi") {
                       echo "<div class='alert alert-danger' role='alert'>
                             Format gambar hanya .PNG, .JPEG, .JPG dan .BMP
-                           </div>";                   
-                    }
-                    else if($_GET['pesan'] == "lengkapi"){
+                           </div>";
+                    } else if ($_GET['pesan'] == "lengkapi") {
                       echo "<div class='alert alert-danger' role='alert'>
                            Pastikan anda sudah mengisi data dengan lengkap.
-                           </div>";                   
+                           </div>";
                     }
                   }
-                ?>
+                  ?>
 
                   <form action="add-pengaduan.php" method="post" enctype="multipart/form-data">
                     <div class="form-group">
-                     <label class="text-info">Tanda *) Wajib Diisi</label>
-                     <input type="hidden" name="IdMasyarakat" value="<?php  echo $_SESSION['id_masyarakat'];?> ">
+
+                      <input type="hidden" name="IdMasyarakat" value="<?php echo $_SESSION['id_masyarakat']; ?> ">
                     </div>
                     <div class="form-group row">
                       <div class="col-lg-3">
-                        <label for="tgl" class="text-primary">Tanggal Pengaduan *)</label>
+                        <label for="tgl" class="text-primary">Tanggal Pengaduan</label>
                       </div>
                       <div class="col-lg-7">
-                       <label class="text-default"><?php echo tgl_indo(date('Y-m-d'))?> </label>
+                        <label class="text-default"><?php echo tgl_indo(date('Y-m-d')) ?> </label>
                       </div>
                     </div>
                     <div class="form-group row">
                       <div class="col-lg-3">
-                       <label for="subjek" class="text-primary">Subjek Pengaduan *)</label>
+                        <label for="subjek" class="text-primary">Subjek Pengaduan</label>
                       </div>
                       <div class="col-lg-7">
-                       <input type="text" class="form-control" placeholder="Masukkan subjek ..." name="subjek" id="subjek" aria-describedby="subjekdesc">
-                       <small id="subjekdesc" class="form-text text-muted">Subjek merupakan judul keluhan. Contoh : Pelayanan Pendaftaran,
-                        Pelayanan Dokter, dan sebagainya.</small>
+                        <select class="form-control" name="subjek" id="subjek" required>
+                          <option value="">Pilih Subjek Pengaduan</option>
+                          <option value="Pelayanan Dokter">Pelayanan Dokter</option>
+                          <option value="Sarana dan Prasarana">Sarana dan Prasarana</option>
+                          <option value="Antrian yang Lama">Antrian yang Lama</option>
+                          <option value="Pelayanan Petugas">Pelayanan Petugas</option>
+                        </select>
+                        <small id="subjekdesc" class="form-text text-muted">Pilih subjek sesuai dengan keluhan yang akan disampaikan</small>
                       </div>
                     </div>
 
                     <div class="form-group row">
-                     <div class="col-lg-10">
-                      <label class="text-primary">Laporan Pengaduan *)</label>
-                      <textarea name="isi" class="form-control" placeholder="Masukkan isi pengaduan ..."></textarea>
-                     </div>
+                      <div class="col-lg-10">
+                        <label class="text-primary">Laporan Pengaduan</label>
+                        <textarea name="isi" class="form-control" placeholder="Masukkan isi pengaduan ..."></textarea>
+                      </div>
                     </div>
 
                     <div class="form-group">
-                     <label class="text-primary"  aria-describedby="buktidoc" >Bukti Dokumen (Bisa Dikosongkan)</label>
-                     <small id="buktidoc" class="form-text text-muted">Bukti dokumen berupa foto atau gambar dengan format .JPG, .PNG, BMP</small>
+                      <label class="text-primary" aria-describedby="buktidoc">Bukti Dokumen (Optional)</label>
+                      <small id="buktidoc" class="form-text text-muted">Bukti dokumen berupa foto atau gambar dengan format .JPG, .PNG, BMP</small>
                     </div>
 
                     <div class="form-group row">
-                     <div class="col-lg-10">
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" name="gambar" id="customFile">
-                        <label class="custom-file-label" for="customFile">Upload file</label>
+                      <div class="col-lg-10">
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" name="gambar" id="customFile">
+                          <label class="custom-file-label" for="customFile">Upload file</label>
+                        </div>
                       </div>
-                     </div>
                     </div>
                     <br>
                     <center>
-                    <button type="reset" class="btn btn-lg btn-danger">Reset</button> &nbsp;
-                    <button type="submit" name="send" class="btn btn-lg btn-success" onClick='return confirmSubmit()'>Kirim</button>
+                      <button type="reset" class="btn btn-lg btn-danger">Reset</button> &nbsp;
+                      <button type="submit" name="send" class="btn btn-lg btn-success" onClick='return confirmSubmit()'>Kirim</button>
                     </center>
                     <br>
-                    
+
                   </form>
                 </div>
               </div>
-          </div>
-          <!--Row-->
+            </div>
+            <!--Row-->
 
-          <!-- Modal Logout -->
-          <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelLogout"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabelLogout">Ohh No!</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <p>Yakin akan logout?</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Batal</button>
-                  <a href="logout.php" class="btn btn-primary">Logout</a>
+            <!-- Modal Logout -->
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelLogout"
+              aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabelLogout">Ohh No!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Yakin akan logout?</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Batal</button>
+                    <a href="logout.php" class="btn btn-primary">Logout</a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
+          </div>
+          <!---Container Fluid-->
         </div>
-        <!---Container Fluid-->
+
+        <!-- Footer -->
       </div>
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>copyright &copy; <script> document.write(new Date().getFullYear()); </script> - developed by
-            <b><a href="">Ari Sumardi</a></b>
-            </span>
-          </div>
-        </div>
-      </footer>
-      <!-- Footer -->
     </div>
-  </div>
 
-  <!-- Scroll to top -->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
-  <script LANGUAGE="JavaScript">
-    function confirmSubmit()
-    {
-      var agree=confirm("Pastikan anda sudah mengisi data dengan benar! Tekan tombol OK untuk mengirim pesan.");
-      if (agree)
-      return true ;
-      else
-      return false ;
-    }
-  </script>
+    <!-- Scroll to top -->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+    <script LANGUAGE="JavaScript">
+      function confirmSubmit() {
+        var agree = confirm("Pastikan anda sudah mengisi data dengan benar! Tekan tombol OK untuk mengirim pesan.");
+        if (agree)
+          return true;
+        else
+          return false;
+      }
+    </script>
 
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-  <script src="js/ruang-admin.min.js"></script>
-  <script src="vendor/chart.js/Chart.min.js"></script>
-  <script src="js/demo/chart-area-demo.js"></script>  
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="js/ruang-admin.min.js"></script>
+    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="js/demo/chart-area-demo.js"></script>
 </body>
 
 </html>

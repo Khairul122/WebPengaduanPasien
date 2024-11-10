@@ -1,16 +1,15 @@
-<?php 
-	session_start();
+<?php
+session_start();
 
-    // cek apakah yang mengakses halaman ini sudah login
-    if(!empty(@$_SESSION['level'] == "Admin")){
-      header("location:index-admin.php");
-    }	
-    else if(!empty(@$_SESSION['level'] == "Petugas")){
-      header("location:index-petugas.php");
-    }
+// cek apakah yang mengakses halaman ini sudah login
+if (!empty(@$_SESSION['level'] == "Admin")) {
+  header("location:index-admin.php");
+} else if (!empty(@$_SESSION['level'] == "Petugas")) {
+  header("location:index-petugas.php");
+}
 
-	?>
-  
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,42 +41,40 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Halaman Login </h1>
                   </div>
-                  	<?php 
-                    if(isset($_GET['pesan'])){
-                      if($_GET['pesan']=="gagal"){
-                        echo "<div class='text-danger'><B>Email dan Password tidak sesuai !</B></div><br>";
-                      }
-                      else if($_GET['pesan']=="nothing"){
-                        echo "<div class='text-danger'><B>Email belum terdaftar !</B></div><br>";
-                      }
-                      else if($_GET['pesan']=="daftar"){
-                        echo "<div class='text-danger'><B>Anda tidak punya akses. Silahkan login dulu.</B></div><br>";
-                      }
+                  <?php
+                  if (isset($_GET['pesan'])) {
+                    if ($_GET['pesan'] == "gagal") {
+                      echo "<div class='text-danger'><B>Email dan Password tidak sesuai !</B></div><br>";
+                    } else if ($_GET['pesan'] == "nothing") {
+                      echo "<div class='text-danger'><B>Email belum terdaftar !</B></div><br>";
+                    } else if ($_GET['pesan'] == "daftar") {
+                      echo "<div class='text-danger'><B>Anda tidak punya akses. Silahkan login dulu.</B></div><br>";
                     }
-                    ?>
-                  <form class="user"  action="cek-login.php" method="POST">
+                  }
+                  ?>
+                  <form class="user" action="cek-login.php" method="POST">
                     <div class="form-group">
                       <input type="text" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp" name="email" placeholder="Email" autocomplete="off" required>
                     </div>
                     <div class="form-group">
                       <input type="password" class="form-control" id="exampleInputPassword" name="password" placeholder="Kata Sandi" autocomplete="off" required>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                       <a class="font-weight-bold small" href="#">Lupa Kata Sandi?</a>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                       <button type="submit" class="btn btn-primary btn-block">Login</button>
                     </div>
                   </form>
                   <hr>
-                  <div class="text-center">
-                  Belum punya akun? <a class="font-weight-bold small" href="#">Daftar disini.</a>
-                  </div>
+                  <!-- <div class="text-center">
+                    Belum punya akun? <a class="font-weight-bold small" href="#">Daftar disini.</a>
+                  </div> -->
                   <div class="text-center">
                   </div>
                 </div>
 
-              <!-- Informasi login 
+                <!-- Informasi login 
                 <div class="login-form">
                     <div class="text-center text-danger"><h5>Informasi Login Admin dan Petugas</h5></div>
                     <table class="table table-responsive table-condensed table-hover">

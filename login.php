@@ -55,9 +55,7 @@ if (!empty($_SESSION['email'])) {
                     <div class="form-group">
                       <input type="password" class="form-control" id="exampleInputPassword" name="password" placeholder="Kata Sandi" required>
                     </div>
-                    <div class="form-group">
-                      <a class="font-weight-bold small" href="#">Lupa Kata Sandi?</a>
-                    </div>
+
                     <div class="form-group">
                       <button type="submit" class="btn btn-primary btn-block">Login</a>
                     </div>
@@ -72,10 +70,10 @@ if (!empty($_SESSION['email'])) {
                       Untuk login ke halaman Admin <a class="font-weight-bold small" href="admin/login.php">Login disini.</a>
                     </div>
                   </div>
-
-                  <!-- Informasi login
-                <div class="login-form">
-                    <div class="text-center text-danger"><h5>Informasi Login Masyarakat/Pasien</h5></div>
+                  <!-- <div class="login-form">
+                    <div class="text-center text-danger">
+                      <h5>Informasi Login Masyarakat/Pasien</h5>
+                    </div>
                     <table class="table table-responsive table-condensed table-hover">
                       <tr>
                         <td>Username</td>
@@ -88,20 +86,20 @@ if (!empty($_SESSION['email'])) {
                         <td class="text-success">masyarakat</td>
                       </tr>
                     </table>
-                </div-->
+                  </div -->
 
+                    </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <!-- Login Content -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="js/ruang-admin.min.js"></script>
+      <!-- Login Content -->
+      <script src="vendor/jquery/jquery.min.js"></script>
+      <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+      <script src="js/ruang-admin.min.js"></script>
 </body>
 
 </html>
