@@ -39,7 +39,7 @@ if (!empty(@$_SESSION['level'] == "Admin")) {
               <div class="col-lg-12">
                 <div class="login-form">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Halaman Login </h1>
+                    <h1 class="h4 text-gray-900 mb-4">Halaman Login Petugas</h1>
                   </div>
                   <?php
                   if (isset($_GET['pesan'])) {
@@ -67,46 +67,14 @@ if (!empty(@$_SESSION['level'] == "Admin")) {
                     </div>
                   </form>
                   <hr>
-                  <!-- <div class="text-center">
-                    Belum punya akun? <a class="font-weight-bold small" href="#">Daftar disini.</a>
-                  </div> -->
+                  <div class="text-center">
+                    Belum punya akun? <a class="font-weight-bold small" href="registrasi.php">Daftar disini.</a>
+                  </div>
                   <div class="text-center">
                   </div>
                 </div>
 
-                <!-- Informasi login 
-                <div class="login-form">
-                    <div class="text-center text-danger"><h5>Informasi Login Admin dan Petugas</h5></div>
-                    <table class="table table-responsive table-condensed table-hover">
-                      <tr>
-                        <td colspan="3" class="text-primary"><b>Admin</b></td>
-                      </tr>
-                      <tr>
-                        <td>Username</td>
-                        <td>:</td>
-                        <td class="text-success">admin@gmail.com</td>
-                      </tr>
-                      <tr>
-                        <td>Password</td>
-                        <td>:</td>
-                        <td class="text-success">admin</td>
-                      </tr>
-                      <tr>
-                        <td colspan="3" class="text-primary"><b>Petugas</b></td>
-                      </tr>
-                      <tr>
-                        <td>Username</td>
-                        <td>:</td>
-                        <td class="text-success">petugas@gmail.com</td>
-                      </tr>
-                      <tr>
-                        <td>Password</td>
-                        <td>:</td>
-                        <td class="text-success">petugas</td>
-                      </tr>
-                    </table>
-                </div>
-                -->
+                
               </div>
             </div>
           </div>
