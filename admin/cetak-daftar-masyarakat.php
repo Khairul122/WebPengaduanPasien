@@ -4,8 +4,8 @@ require_once("../vendor/dompdf/autoload.inc.php");
 use Dompdf\Dompdf;
 $dompdf = new Dompdf();
 $query = mysqli_query($koneksi,"select * from tbl_masyarakat");
-$html = '<center><h1><b>PUSKESMAS ABCD</b></h1></center><br><br/>';
-$html = '<center><h2><b>Daftar Masyarakat</b></h2></center><hr/><br/>';
+$html = '<center><h1><b>AYANI WOMEN AND CHILDREN CLINIC/b></h1></center><br><br/>';
+$html = '<center><h2><b>Daftar Pasien</b></h2></center><hr/><br/>';
 $html .= '<table border="1" width="100%">
  <tr align="center">
  <th>No</th>

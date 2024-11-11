@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link href="../img/logo/logo.png" rel="icon">
-  <title>Pengaduan - Daftar Masyarakat</title>
+  <title>Pengaduan - Daftar Pasien</title>
   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="../css/ruang-admin.min.css" rel="stylesheet">
@@ -72,7 +72,7 @@
         <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
           <div class="d-sm-flex align-items-center justify-content-between mb-0">
-            <h1 class="h3 mb-0 text-gray-800">Daftar Masyarakat</h1>
+            <h1 class="h3 mb-0 text-gray-800">Daftar Pasien</h1>
           </div>
 
           <div class="row">
@@ -84,7 +84,7 @@
                     <span class="icon text-primary-50">
                       <i class="fas fa-print"></i>
                     </span>
-                    <span class="text">Cetak Daftar Masyarakat</span>
+                    <span class="text">Cetak Daftar Pasien</span>
                   </a>
                 </div>  
                 <div class="table-responsive p-3">

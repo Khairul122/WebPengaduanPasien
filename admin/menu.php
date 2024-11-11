@@ -49,7 +49,7 @@
       ?>>     
               <a class="nav-link collapsed" href="daftar-masyarakat.php">
           <i class="far fa-fw fa-window-maximize"></i>
-          <span>Daftar Masyarakat</span>
+          <span>Daftar Pasien</span>
         </a>
       </li>  
 
